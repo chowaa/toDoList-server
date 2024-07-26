@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Put } from '@nestjs/common'
+import { Controller, Get, Post, Body, Param } from '@nestjs/common'
 import { TodoService } from './todo.service'
 import { createTodoDto, UpdateTodoDto } from './create-todo.dto'
 
