@@ -19,8 +19,20 @@ export class TodoController {
     }
   }
 
+  @ApiOperation({ summary: '待办事项详情' })
+  @Post('/todoDetail/:id')
+  async todoDetail(@Param('id') id: string) {
+    console.log(id)
+    const data = await this.todoService.findOneById(id)
+    return {
+      title: '创建一个待办事项',
+      data: data,
+      success: true
+    }
+  }
+
   @ApiOperation({ summary: '创建一个待办事项' })
-  @Post()
+  @Post('/createTodoList')
   async createTodoList(@Body() createTodoDto: CreateTodoDto) {
     console.log(createTodoDto)
     await this.todoService.create(createTodoDto)
@@ -31,7 +43,7 @@ export class TodoController {
   }
 
   @ApiOperation({ summary: '修改一个待办事项' })
-  @Put(':id')
+  @Put('/updateTodoList/:id')
   async updateTodoList(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
     await this.todoService.updateById(id, updateTodoDto)
     return {
@@ -44,7 +56,7 @@ export class TodoController {
   }
 
   @ApiOperation({ summary: '删除一个待办事项' })
-  @Delete(':id')
+  @Delete('/deleteTodoList/:id')
   async deleteTodoList(@Param('id') id: string) {
     await this.todoService.removeById(id)
     return {

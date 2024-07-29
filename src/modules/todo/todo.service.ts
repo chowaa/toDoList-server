@@ -17,6 +17,10 @@ export class TodoService {
     return this.todoModel.find().exec()
   }
 
+  async findOneById(_id: string): Promise<Todo> {
+    return this.todoModel.findById(_id).exec()
+  }
+
   async updateById(_id: string, updatePersonDto: UpdateTodoDto): Promise<Todo> {
     console.log(_id)
     return this.todoModel.findOneAndUpdate({ _id: _id }, updatePersonDto, { new: true }).exec()
