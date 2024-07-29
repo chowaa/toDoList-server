@@ -5,7 +5,7 @@ export type TodoDocument = Todo & Document
 
 @Schema()
 export class Todo {
-  @Prop({ unique: true }) // 确保 `name` 是唯一的
+  @Prop() // 确保 `name` 是唯一的
   title: string
 
   @Prop()

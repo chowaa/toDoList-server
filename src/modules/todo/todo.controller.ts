@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Param, Put, Delete, Body } from '@nestjs/common'
 import { TodoService } from './todo.service'
-import { CreateTodoDto, UpdateTodoDto } from './create-todo.dto'
+import { CreateTodoDto, UpdateTodoDto } from './todo.dto'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
 
 @ApiTags('todoList')
