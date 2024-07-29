@@ -1,30 +1,56 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common'
+import { Controller, Get, Post, Param, Put, Delete, Body } from '@nestjs/common'
 import { TodoService } from './todo.service'
-import { createTodoDto, UpdateTodoDto } from './create-todo.dto'
+import { CreateTodoDto, UpdateTodoDto } from './create-todo.dto'
+import { ApiOperation, ApiTags } from '@nestjs/swagger'
 
-@Controller('todo')
+@ApiTags('todoList')
+@Controller('todoList')
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
-  @Post()
-  async create(@Body() createTodoDto: createTodoDto) {
-    return this.todoService.create(createTodoDto)
-  }
-
+  @ApiOperation({ summary: '获取所有待办事项' })
   @Get()
-  async findAll() {
-    return this.todoService.findAll()
+  async findAllTodoList() {
+    const data = await this.todoService.findAll()
+    return {
+      data: data,
+      title: '获取所有待办事项',
+      success: true
+    }
   }
 
-  // @Post(':name')
-  // async findOne(@Param('name') name: string) {
-  //   return this.todoService.findOne(name)
-  // }
-
-  @Post(':name')
-  async updatePerson(@Param('name') name: string, @Body() updatePersonDto: UpdateTodoDto) {
-    return this.todoService.updatePersonById(name, updatePersonDto)
+  @ApiOperation({ summary: '创建一个待办事项' })
+  @Post()
+  async createTodoList(@Body() createTodoDto: CreateTodoDto) {
+    console.log(createTodoDto)
+    await this.todoService.create(createTodoDto)
+    return {
+      title: '创建一个待办事项',
+      success: true
+    }
   }
 
-  // 添加其他路由，如 findOne, update, delete 等
+  @ApiOperation({ summary: '修改一个待办事项' })
+  @Put(':id')
+  async updateTodoList(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
+    await this.todoService.updateById(id, updateTodoDto)
+    return {
+      // data: data,
+      title: '修改一个待办事项',
+      body: updateTodoDto,
+      params: id,
+      success: true
+    }
+  }
+
+  @ApiOperation({ summary: '删除一个待办事项' })
+  @Delete(':id')
+  async deleteTodoList(@Param('id') id: string) {
+    await this.todoService.removeById(id)
+    return {
+      title: '修改一个待办事项',
+      id: id,
+      success: true
+    }
+  }
 }

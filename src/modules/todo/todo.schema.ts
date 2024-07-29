@@ -6,10 +6,22 @@ export type TodoDocument = Todo & Document
 @Schema()
 export class Todo {
   @Prop({ unique: true }) // 确保 `name` 是唯一的
-  name: string
+  title: string
 
   @Prop()
-  age: string
+  content: string
+
+  @Prop()
+  createdAt: string
+
+  @Prop()
+  effectiveTime: string
+
+  @Prop()
+  isCompleted: boolean
+
+  @Prop()
+  completedTime: string
 }
 
 export const TodoSchema = SchemaFactory.createForClass(Todo)
