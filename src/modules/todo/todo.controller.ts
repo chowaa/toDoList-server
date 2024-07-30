@@ -2,7 +2,7 @@ import { Controller, Get, Post, Param, Put, Delete, Body } from '@nestjs/common'
 import { TodoService } from './todo.service'
 import { CreateTodoDto, UpdateTodoDto } from './todo.dto'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
-import { CustomException } from '../../common/exceptions/custom.exception';
+import { CustomException } from '../../common/exceptions/custom.exception'
 
 @ApiTags('todoList')
 @Controller('todoList')
