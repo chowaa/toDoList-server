@@ -45,6 +45,17 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Running the MongiDB
+
+```bash
+# start
+$ net start Mongodb
+
+# stop
+$ net stop Mongodb
+
+```
+
 ## Test
 
 ```bash
