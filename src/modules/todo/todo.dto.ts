@@ -1,4 +1,4 @@
-import { IsString, IsOptional, IsBoolean, IsNotEmpty } from 'class-validator';
+import { IsString, IsOptional, IsBoolean, IsNotEmpty } from 'class-validator'
 import { ApiProperty } from '@nestjs/swagger'
 
 export class UpdateTodoDto {
@@ -35,7 +35,7 @@ export class UpdateTodoDto {
 
 export class CreateTodoDto {
   @ApiProperty({ description: '待办事项名字', example: '待办事项名字' })
-  @IsNotEmpty({message: '请填写待办事项名字'})
+  @IsNotEmpty({ message: '请填写待办事项名字' })
   readonly title: string
 
   @ApiProperty({ description: '待办事项内容', example: '待办事项内容' })
