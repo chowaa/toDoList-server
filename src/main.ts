@@ -1,6 +1,8 @@
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger'
+import { ResponseInterceptor } from './common/response.interceptor'
+import { CustomExceptionFilter } from './common/filters/custom-exception.filter'
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule)
@@ -10,9 +12,15 @@ async function bootstrap() {
     .setVersion('1.0')
     .build()
   const document = SwaggerModule.createDocument(app, config)
+
   SwaggerModule.setup('TodoList_api', app, document)
+
+  app.useGlobalInterceptors(new ResponseInterceptor())
+  app.useGlobalFilters(new CustomExceptionFilter())
+
   console.log('server start in http://localhost:3000/')
   console.log('Swagger start in http://localhost:3000/TodoList_api')
+
   await app.listen(3000)
 }
 bootstrap()
