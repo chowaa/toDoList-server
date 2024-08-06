@@ -42,7 +42,7 @@ export class CreateTodoDto {
   readonly content: string
 
   @ApiProperty({ description: '创建时间', example: '创建时间' })
-  readonly createdAt: string
+  readonly createdAt: Date
 
   @ApiProperty({ description: '生效时间', example: '生效时间' })
   readonly effectiveTime?: string
@@ -51,5 +51,5 @@ export class CreateTodoDto {
   readonly isCompleted?: boolean
 
   @ApiProperty({ description: '完成时间', example: '完成时间' })
-  readonly completedTime?: string
+  readonly completedTime?: Date
 }

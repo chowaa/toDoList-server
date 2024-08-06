@@ -52,3 +52,29 @@ export class TodoController {
     return await this.todoService.removeById(id)
   }
 }
+
+// const createTodoDtoRules = (createTodoDto: CreateTodoDto) => {
+//   const result = {
+//     flag: false,
+//     message: ''
+//   }
+//   const messages = []
+//   if (!createTodoDto.title || createTodoDto.title === '') {
+//     messages.push('title为必填')
+//   }
+//   if (!createTodoDto.content || createTodoDto.content === '') {
+//     messages.push('content为必填')
+//   }
+//   if (createTodoDto.createdAt instanceof Date) {
+//     messages.push('createdAt类型为Date')
+//   }
+//   if (createTodoDto.completedTime instanceof Date) {
+//     messages.push('completedTime类型为Date')
+//   }
+//   if (messages.length === 0) {
+//     result.flag = true
+//   } else {
+//     result.message = messages.join(' ')
+//   }
+//   return result
+// }
