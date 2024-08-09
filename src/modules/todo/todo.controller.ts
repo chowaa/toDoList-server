@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Param, Put, Delete, Body } from '@nestjs/common'
+import { Controller, Get, Post, Param, Put, Delete, Body, Query } from '@nestjs/common'
 import { TodoService } from './todo.service'
 import { CreateTodoDto, UpdateTodoDto } from './todo.dto'
 import { ApiOperation, ApiTags } from '@nestjs/swagger'
@@ -17,8 +17,8 @@ export class TodoController {
   }
 
   @ApiOperation({ summary: '待办事项详情' })
-  @Post('/todoDetail/:id')
-  async todoDetail(@Param('id') id: string) {
+  @Post('/todoDetail')
+  async todoDetail(@Query('id') id: string) {
     // console.log(id)
     // const data = await this.todoService.findOneById(id)
     if (!id) {
